@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #2978b5;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+#filters {
+  text-align: center;
+  padding: 1em;
+}
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  background: #ffd60a;
+  border: none;
+  cursor: pointer;
+}
+.listing {
+  background: white;
+  margin: 1em auto;
+  padding: 1em;
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: auto;
+  gap: 10px;
+}
+form input, form select, form textarea {
+  padding: 10px;
+  font-size: 1em;
+}
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #2978b5;
+  color: white;
+  margin-top: 2em;
+}

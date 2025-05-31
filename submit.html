@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Listing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h2>Submit a Listing</h2>
+    <form id="listingForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <select name="category" required>
+        <option value="">Select Category</option>
+        <option value="Babysitting">Babysitting</option>
+        <option value="Lawn Work">Lawn Work</option>
+        <option value="Tutoring">Tutoring</option>
+        <option value="Creative">Creative Services</option>
+      </select>
+      <textarea name="description" placeholder="Job Description" required></textarea>
+      <input type="text" name="contact" placeholder="Contact Info" required />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="thankYouMsg" style="display:none;">Thank you! Your listing has been submitted.</p>
+  </main>
+  <script>
+    const form = document.getElementById('listingForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => { data[key] = value });
+
+      await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      form.style.display = 'none';
+      document.getElementById('thankYouMsg').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

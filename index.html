@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worcester Youth Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Worcester Youth Connect</h1>
+    <nav>
+      <a href="submit.html">Submit a Listing</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <section id="filters">
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('Babysitting')">Babysitting</button>
+    <button onclick="filterCategory('Lawn Work')">Lawn Work</button>
+    <button onclick="filterCategory('Tutoring')">Tutoring</button>
+    <button onclick="filterCategory('Creative')">Creative Services</button>
+  </section>
+
+  <section id="listings">
+    <div class="listing" data-category="Babysitting">
+      <h3>Babysitting Help Needed</h3>
+      <p>Looking for someone to watch my 5-year-old after school.</p>
+    </div>
+    <div class="listing" data-category="Lawn Work">
+      <h3>Front Lawn Needs Mowing</h3>
+      <p>Simple lawn mowing job, takes about 30 minutes.</p>
+    </div>
+    <div class="listing" data-category="Tutoring">
+      <h3>Math Tutor Wanted</h3>
+      <p>High school algebra tutoring needed 2x/week.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Worcester Youth Connect</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
