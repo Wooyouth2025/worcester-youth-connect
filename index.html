@@ -2,234 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Worcester Youth Connect</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      color: #2c3e50;
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .header img {
+      max-width: 100px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-right: 20px;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    nav.nav {
+      background-color: #2c3e50;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .nav a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: #1abc9c;
+    }
+
+    /* Dropdown menu */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #34495e;
+      min-width: 160px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px;
+      display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .social-icons {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      margin: 0 10px;
+    }
+
+    #filters button {
+      margin: 5px;
+      padding: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
-<body><!-- Global Styles -->
-<style><!-- Header -->
-<div class="header">
-  <img src="logo.png" alt="Worcester Youth Connect Logo">
-  <h1>Worcester Youth Connect</h1>
-</div>
+<body>
 
-<!-- Navigation -->
-<nav class="nav">
-  <div class="nav-item">
-    <a href="#jobs">Opportunities ▼</a>
-    <div class="dropdown">
-      <a href="#jobs">Job Listings</a>
-      <a href="#services">Youth Services</a>
-      <a href="#submit">Submit Opportunity</a>
-    </div>
-  </div>
-  <a href="#contact">Contact</a>
-  <div class="social-icons">
-    <a href="https://instagram.com
-
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f8fa;
-    color: #2c3e50;
-  }
-
-  /* Header with logo and title */
-  .header {<!-- Global Styles -->
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f8fa;
-    color: #2c3e50;
-  }
-
-  /* Header with logo and title */
-  .header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .header img {
-    max-width: 100px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-  }
-
-  .header h1 {
-    font-size: 2rem;
-    margin: 0;
-    flex: 1;
-    text-align: center;
-  }
-
-  /* Navigation Menu */
-  .nav {
-    background-color: #2c3e50;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .nav a {
-    color: #fff;
-    padding: 14px 20px;
-    text-decoration: none;
-    text-align: center;
-    display: block;
-  }
-
-  .nav a:hover {
-    background-color: #1abc9c;
-    color: white;
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 600px) {
-    .header {
-      flex-direction: column;
-    }
-
-    .header img {
-      margin: 0 0 10px 0;
-    }
-
-    .header h1 {
-      font-size: 1.5rem;
-    }
-
-    .nav a {
-      padding: 12px;
-    }
-  }
-</style>/* Dropdown Styles */
-.nav-item {
-  position: relative;
-}
-
-.nav .dropdown {
-  display: none;
-  position: absolute;
-  background-color
-
-
-<!-- Header -->
-<div class="header">
-  <img src="logo.png" alt="Worcester Youth Connect Logo">
-  <h1>Worcester Youth Connect</h1>
-</div>
-
-<!-- Navigation -->
-<div class="nav">
-  <a href="#jobs">Job Listings</a>
-  <a href="#services">Youth Services</a>
-  <a href="#submit">Submit Opportunity</a>
-  <a href="#contact">Contact</a>
-</div>
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .header img {
-    max-width: 100px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-  }
-
-  .header h1 {
-    font-size: 2rem;
-    margin: 0;
-    flex: 1;
-    text-align: center;
-  }
-
-  /* Navigation Menu */
-  .nav {
-    background-color: #2c3e50;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .nav a {
-    color: #fff;
-    padding: 14px 20px;
-    text-decoration: none;
-    text-align: center;
-    display: block;
-  }
-
-  .nav a:hover {
-    background-color: #1abc9c;
-    color: white;
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 600px) {
-    .header {
-      flex-direction: column;
-    }
-
-    .header img {
-      margin: 0 0 10px 0;
-    }
-
-    .header h1 {
-      font-size: 1.5rem;
-    }
-
-    .nav a {
-      padding: 12px;
-    }
-  }
-</style>
-
-<!-- Header -->
-<div class="header">
-  <img src="logo.png" alt="Worcester Youth Connect Logo">
-  <h1>Worcester Youth Connect</h1>
-</div>
-
-<!-- Navigation -->
-<div class="nav">
-  <a href="#jobs">Job Listings</a>
-  <a href="#services">Youth Services</a>
-  <a href="#submit">Submit Opportunity</a>
-  <a href="#contact">Contact</a>
-</div>
-
-  <header><!-- Header with Logo and Title -->
-<div style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-  <img src="logo.png" alt="Worcester Youth Connect Logo"
-       style="max-width: 120px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin-right: 20px;">
-  <h1 style="font-size: 2rem; font-weight: bold; color: #2c3e50; margin: 0;">
-    Worcester Youth Connect
-  </h1>
-</div>
-
+  <!-- Header -->
+  <div class="header">
+    <img src="logo.png" alt="Worcester Youth Connect Logo">
     <h1>Worcester Youth Connect</h1>
-    <nav>
-      <a href="submit.html">Submit a Listing</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-  </header>
+  </div>
 
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="dropdown">
+      <a class="dropbtn" href="#">Opportunities ▼</a>
+      <div class="dropdown-content">
+        <a href="#jobs">Job Listings</a>
+        <a href="#services">Youth Services</a>
+        <a href="#submit">Submit Opportunity</a>
+      </div>
+    </div>
+    <a href="#contact">Contact</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+
+  <!-- Filters Section -->
   <section id="filters">
     <button onclick="filterCategory('all')">All</button>
     <button onclick="filterCategory('Babysitting')">Babysitting</button>
@@ -238,6 +144,7 @@
     <button onclick="filterCategory('Creative')">Creative Services</button>
   </section>
 
+  <!-- Listings Section -->
   <section id="listings">
     <div class="listing" data-category="Babysitting">
       <h3>Babysitting Help Needed</h3>
@@ -253,8 +160,19 @@
     </div>
   </section>
 
+  <!-- Social Media Icons -->
+  <div class="social-icons">
+    <a href="https://instagram.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/24/174/174855.png" alt="Instagram">
+    </a>
+    <a href="https://facebook.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook">
+    </a>
+  </div>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Worcester Youth Connect</p>
+    <p style="text-align:center;">&copy; 2025 Worcester Youth Connect</p>
   </footer>
 
   <script src="script.js"></script>
