@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Worcester Youth Connect</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -55,7 +56,6 @@
       background-color: #1abc9c;
     }
 
-    /* Dropdown menu */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -95,6 +95,29 @@
       padding: 10px;
     }
 
+    #listings {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .listing {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .listing:hover {
+      transform: scale(1.02);
+    }
+
+    .listing h3 {
+      margin-top: 0;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -113,14 +136,11 @@
   </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <div class="header">
+  <div class="header" data-aos="fade-down">
     <img src="logo.png" alt="Worcester Youth Connect Logo">
     <h1>Worcester Youth Connect</h1>
   </div>
 
-  <!-- Navigation -->
   <nav class="nav">
     <div class="dropdown">
       <a class="dropbtn" href="#">Opportunities ▼</a>
@@ -135,8 +155,7 @@
     <a href="privacy.html">Privacy</a>
   </nav>
 
-  <!-- Filters Section -->
-  <section id="filters">
+  <section id="filters" data-aos="fade-up">
     <button onclick="filterCategory('all')">All</button>
     <button onclick="filterCategory('Babysitting')">Babysitting</button>
     <button onclick="filterCategory('Lawn Work')">Lawn Work</button>
@@ -144,8 +163,7 @@
     <button onclick="filterCategory('Creative')">Creative Services</button>
   </section>
 
-  <!-- Listings Section -->
-  <section id="listings">
+  <section id="listings" data-aos="fade-up">
     <div class="listing" data-category="Babysitting">
       <h3>Babysitting Help Needed</h3>
       <p>Looking for someone to watch my 5-year-old after school.</p>
@@ -160,8 +178,30 @@
     </div>
   </section>
 
-  <!-- Social Media Icons -->
-  <div class="social-icons">
+  <section id="map" data-aos="fade-up">
+    <h2 style="text-align:center;">Find Us in Worcester</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.355971489864!2d-71.80229348454562!3d42.26259397919302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e406484fa933e5%3A0x23bc71b0a8a27820!2sWorcester%2C%20MA!5e0!3m2!1sen!2sus!4v1663601555476!5m2!1sen!2sus"
+        width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-up" style="padding: 40px; background-color: #fff;">
+    <h2 style="text-align:center;">Contact Us</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST" style="max-width: 500px; margin: 0 auto;">
+      <label>Your Name:</label><br>
+      <input type="text" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+      <label>Your Email:</label><br>
+      <input type="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+      <label>Message:</label><br>
+      <textarea name="message" rows="4" required style="width: 100%; padding: 10px;"></textarea><br><br>
+      <button type="submit" style="padding: 10px 20px; background-color: #1abc9c; border: none; color: white;">Send</button>
+    </form>
+  </section>
+
+  <div class="social-icons" data-aos="fade-up">
     <a href="https://instagram.com" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/24/174/174855.png" alt="Instagram">
     </a>
@@ -170,11 +210,12 @@
     </a>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p style="text-align:center;">&copy; 2025 Worcester Youth Connect</p>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
   <script src="script.js"></script>
 </body>
 </html>
