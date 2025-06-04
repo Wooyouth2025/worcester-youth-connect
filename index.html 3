@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Worcester Youth Connect</title>
+  <style>
+    /* Reset and base styles */
+    body {
+      background-color: #FAFAFA;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0 20px 40px 20px;
+    }
+    h1, h2, h3 {
+      color: #FF6F61;
+      margin: 0 0 10px 0;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #FF6F61, #F5A623);
+      padding: 25px 20px;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 8px rgba(245, 166, 35, 0.5);
+    }
+    header img {
+      margin-top: 12px;
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    /* Filter Buttons */
+    #categoryFilters {
+      margin: 25px 0 15px;
+      text-align: center;
+    }
+    #categoryFilters button {
+      background-color: #4A90E2;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      margin: 6px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(74, 144, 226, 0.6);
+    }
+    #categoryFilters button:hover,
+    #categoryFilters button.active {
+      background-color: #F5A623;
+      box-shadow: 0 4px 8px rgba(245, 166, 35, 0.8);
+      color: #222;
+    }
+    /* Search Input */
+    #searchInput {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 25px;
+      border: 2px solid #4A90E2;
+      margin: 0 auto 30px auto;
+      display: block;
+      box-shadow: 0 2px 5px rgba(74, 144, 226, 0.4);
+      transition: border-color 0.3s ease;
+    }
+    #searchInput:focus {
+      outline: none;
+      border-color: #F5A623;
+      box-shadow: 0 4px 10px rgba(245, 166, 35, 0.7);
+    }
+    /* Listing Cards */
+    #listings {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .listing-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 2px solid transparent;
+    }
+    .listing-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      border-color: #F5A623;
+    }
+    .listing-card img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      user-select: none;
+    }
+    .listing-card h3 {
+      padding: 12px 20px 6px 20px;
+      font-size: 1.25rem;
+    }
+    .listing-card p {
+      padding: 0 20px 12px 20px;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .more-info {
+      padding: 0 20px 15px 20px;
+      font-size: 0.95rem;
+      color: #555;
+      display: none;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Worcester Youth Connect</h1>
+    <img src="https://via.placeholder.com/300x80?text=Youth+Connect+Logo" alt="Worcester Youth Connect Logo" />
+  </header>
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search listings..."
+    onkeyup="filterListings()"
+    aria-label="Search listings"
+  />
+
+  <div id="categoryFilters" role="group" aria-label="Filter listings by category">
+    <button class="active" onclick="filterByCategory('all', this)">All</button>
+    <button onclick="filterByCategory('babysitting', this)">Babysitting</button>
+    <button onclick="filterByCategory('lawn', this)">Lawn Care</button>
+    <button onclick="filterByCategory('tutoring', this)">Tutoring</button>
+    <button onclick="filterByCategory('creative', this)">Creative</button>
+  </div>
+
+  <section id="listings" aria-live="polite">
+    <article class="listing-card" data-category="babysitting" tabindex="0" onclick="toggleDetails(this)" onkeypress="if(event.key==='Enter') toggleDetails(this)">
+      <img src="https://via.placeholder.com/900x180?text=Babysitting" alt="Babysitting service image" />
+      <h3>Babysitter - Jane Doe</h3>
+      <p>Available weekends</p>
+      <div class="more-info">
+        <p>Experience: 3 years</p>
+        <p>Contact: janedoe@email.com</p>
+      </div>
+    </article>
+
+    <article class="listing-card" data-category="lawn" tabindex="0" onclick="toggleDetails(this)" onkeypress="if(event.key==='Enter') toggleDetails(this)">
+      <img src="https://via.placeholder.com/900x180?text=Lawn+Care" alt="Lawn care service image" />
+      <h3>Lawn Care - Mike Smith</h3>
+      <p>Affordable and reliable</p>
+      <div class="more-info">
+        <p>Services: mowing, trimming, cleanup</p>
+        <p>Contact: mike@email.com</p>
+      </div>
+    </article>
+
+    <article class="listing-card" data-category="tutoring" tabindex="0" onclick="toggleDetails(this)" onkeypress="if(event.key==='Enter') toggleDetails(this)">
+      <img src="https://via.placeholder.com/900x180?text=Tutoring" alt="Tutoring service image" />
+      <h3>Tutor - Sarah Lee</h3>
+      <p>Math and Science expert</p>
+      <div class="more-info">
+        <p>Grades: 6-12</p>
+        <p>Contact: sarahlee@email.com</p>
+      </div>
+    </article>
+
+    <article class="listing-card" data-category="creative" tabindex="0" onclick="toggleDetails(this)" onkeypress="if(event.key==='Enter') toggleDetails(this)">
+      <img src="https://via.placeholder.com/900x180?text=Creative+Services" alt="Creative services image" />
+      <h3>Graphic Design - Alex Kim</h3>
+      <p>Logo & branding design</p>
+      <div class="more-info">
+        <p>Portfolio available upon request</p>
+        <p>Contact: alexkim@email.com</p>
+      </div>
+    </article>
+  </section>
+
+  <script>
+    // Toggle expanded details on click or keyboard enter
+    function toggleDetails(card) {
+      const moreInfo = card.querySelector('.more-info');
+      if (moreInfo.style.display === 'block') {
+        moreInfo.style.display = 'none';
+      } else {
+        moreInfo.style.display = 'block';
+      }
+    }
+
+    // Filter listings by category
+    function filterByCategory(category, btn) {
+      const listings = document.querySelectorAll('#listings .listing-card');
+      listings.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        card.style.display = (category === 'all' || cat === category) ? '' : 'none';
+      });
+      // Update active button styling
+      document.querySelectorAll('#categoryFilters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Clear search input on category filter
+      document.getElementById('searchInput').value = '';
+    }
+
+    // Search listings by text input
+    function filterListings() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const listings = document.querySelectorAll('#listings .listing-card');
+      listings.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? '' : 'none';
+      });
+      // Remove active class from category buttons on search
+      document.querySelectorAll('#categoryFilters button').forEach(b => b.classList.remove('active'));
+    }
+  </script>
+</body>
+</html>
