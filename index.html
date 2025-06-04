@@ -219,3 +219,47 @@
   <script src="script.js"></script>
 </body>
 </html>
+<section id="submission" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <h2 style="color:#FF6F61; text-align:center; margin-bottom: 20px;">Submit a Listing</h2>
+  <form
+    action="https://formspree.io/f/mkgbggrj"
+    method="POST"
+    style="display: flex; flex-direction: column; gap: 15px;"
+  >
+    <label>
+      Name:
+      <input type="text" name="name" required placeholder="Your name" style="width:100%; padding:8px; border-radius: 6px; border: 1px solid #ccc;" />
+    </label>
+
+    <label>
+      Category:
+      <select name="category" required style="width:100%; padding:8px; border-radius: 6px; border: 1px solid #ccc;">
+        <option value="">--Select Category--</option>
+        <option value="babysitting">Babysitting</option>
+        <option value="lawn">Lawn Care</option>
+        <option value="tutoring">Tutoring</option>
+        <option value="creative">Creative</option>
+      </select>
+    </label>
+
+    <label>
+      Short Description:
+      <input type="text" name="description" required placeholder="Brief description" style="width:100%; padding:8px; border-radius: 6px; border: 1px solid #ccc;" />
+    </label>
+
+    <label>
+      Contact Email:
+      <input type="email" name="email" required placeholder="Your contact email" style="width:100%; padding:8px; border-radius: 6px; border: 1px solid #ccc;" />
+    </label>
+
+    <button
+      type="submit"
+      style="background-color: #4A90E2; color: white; padding: 12px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;"
+      onmouseover="this.style.backgroundColor='#F5A623'"
+      onmouseout="this.style.backgroundColor='#4A90E2'"
+    >
+      Submit
+    </button>
+  </form>
+</section>
+
