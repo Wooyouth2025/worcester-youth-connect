@@ -1,4 +1,12 @@
 body {
+  background-image: url('background.jpg'); /* or 'assets/background.jpg' if you used a folder */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body {
   font-family: Arial, sans-serif;
   background: #f9f9f9;
   color: #333;
