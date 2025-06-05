@@ -92,6 +92,25 @@
     .listing-description {
       font-size: 1rem;
     }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: #2980b9;
+    }
   </style>
 </head>
 <body>
@@ -127,5 +146,37 @@
       <div class="listing-description">Looking for someone to mow and trim lawn every other week. Must have own equipment. $25/hr.</div>
     </div>
   </section>
+
+  <section class="listing-section">
+    <h2 style="margin-top:2rem; font-size: 1.5rem;">Post an Opportunity</h2>
+    <form action="https://formspree.io/f/mkgbggrj" method="POST" id="jobForm">
+      <input type="text" name="name" placeholder="Your Name or Business" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="title" placeholder="Job Title (e.g. Babysitter Needed)" required>
+      <textarea name="description" placeholder="Describe the job or gig..." rows="5" required></textarea>
+      <button type="submit">Submit Opportunity</button>
+    </form>
+  </section>
+
+  <script>
+    const form = document.getElementById("jobForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.innerHTML = "<p style='color: lightgreen;'>Thank you! Your listing was submitted.</p>";
+        } else {
+          form.innerHTML = "<p style='color: red;'>Oops! Something went wrong. Please try again.</p>";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
