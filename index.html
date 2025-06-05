@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Worcester Youth Connect</title>
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  />
+  
   <style>
     body {
       background-image: url('background.jpg'); /* or 'assets/background.jpg' if you used a folder */
@@ -50,7 +57,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      margin: 2rem 1rem 1rem;
+      margin: 2rem 1rem;
     }
 
     .category-button {
@@ -64,20 +71,8 @@
       transition: background-color 0.3s;
     }
 
-    .category-button:hover,
-    .category-button.active {
+    .category-button:hover {
       background-color: #27ae60;
-    }
-
-    /* Search box style */
-    #searchBox {
-      display: block;
-      margin: 0 auto 1.5rem;
-      padding: 0.75rem 1rem;
-      max-width: 400px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
     }
 
     .listing-section {
@@ -123,6 +118,14 @@
     form button:hover {
       background-color: #2980b9;
     }
+    
+    /* Leaflet map style */
+    #map {
+      height: 300px;
+      max-width: 900px;
+      margin: 1rem auto;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -132,31 +135,31 @@
   </header>
 
   <section class="categories">
-    <button class="category-button active" data-category="all">All</button>
-    <button class="category-button" data-category="Babysitting">Babysitting</button>
-    <button class="category-button" data-category="Lawn Work">Lawn Work</button>
-    <button class="category-button" data-category="Tutoring">Tutoring</button>
-    <button class="category-button" data-category="Errands">Errands</button>
-    <button class="category-button" data-category="Restaurants">Restaurants</button>
-    <button class="category-button" data-category="Cafes">Cafes</button>
-    <button class="category-button" data-category="Mechanics">Mechanics</button>
-    <button class="category-button" data-category="Nursing Homes">Nursing Homes</button>
+    <button class="category-button">Babysitting</button>
+    <button class="category-button">Lawn Work</button>
+    <button class="category-button">Tutoring</button>
+    <button class="category-button">Errands</button>
+    <button class="category-button">Restaurants</button>
+    <button class="category-button">Cafes</button>
+    <button class="category-button">Mechanics</button>
+    <button class="category-button">Nursing Homes</button>
   </section>
 
-  <section class="listing-section">
-    <input type="text" id="searchBox" placeholder="Search listings..." />
+  <!-- Map container -->
+  <div id="map"></div>
 
-    <div class="listing-card" data-category="Cafes">
+  <section class="listing-section">
+    <div class="listing-card">
       <div class="listing-title">Part-Time Dishwasher at Local Café</div>
       <div class="listing-description">Looking for a reliable teen to help with cleaning dishes 4–8pm on weekends. $15/hr. Must be 16+.</div>
     </div>
 
-    <div class="listing-card" data-category="Tutoring">
+    <div class="listing-card">
       <div class="listing-title">After-School Tutor Needed</div>
       <div class="listing-description">Help middle school students with math and English homework. Flexible hours. Great for college students.</div>
     </div>
 
-    <div class="listing-card" data-category="Lawn Work">
+    <div class="listing-card">
       <div class="listing-title">Lawn Care Help</div>
       <div class="listing-description">Looking for someone to mow and trim lawn every other week. Must have own equipment. $25/hr.</div>
     </div>
@@ -173,8 +176,43 @@
     </form>
   </section>
 
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
   <script>
-    // Form submission with thank-you message
+    // Initialize the map centered on Worcester, MA
+    const map = L.map('map').setView([42.2626, -71.8023], 13);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Example listings with coordinates
+    const mapListings = [
+      {
+        title: 'Part-Time Dishwasher at Local Café',
+        description: 'Looking for a reliable teen to help with cleaning dishes 4–8pm on weekends. $15/hr. Must be 16+.',
+        coords: [42.2626, -71.8023]
+      },
+      {
+        title: 'After-School Tutor Needed',
+        description: 'Help middle school students with math and English homework. Flexible hours. Great for college students.',
+        coords: [42.2700, -71.8000]
+      },
+      {
+        title: 'Lawn Care Help',
+        description: 'Looking for someone to mow and trim lawn every other week. Must have own equipment. $25/hr.',
+        coords: [42.2550, -71.8100]
+      }
+    ];
+
+    // Add markers to map
+    mapListings.forEach((listing) => {
+      const marker = L.marker(listing.coords).addTo(map);
+      marker.bindPopup(`<strong>${listing.title}</strong><br>${listing.description}`);
+    });
+
+    // Form submission handling
     const form = document.getElementById("jobForm");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -193,50 +231,6 @@
         }
       });
     });
-
-    // Category filtering
-    const categoryButtons = document.querySelectorAll('.category-button');
-    const listings = document.querySelectorAll('.listing-card');
-    let activeCategory = 'all';
-
-    categoryButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active from all buttons, add to clicked one
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        activeCategory = button.getAttribute('data-category');
-        filterListings();
-      });
-    });
-
-    // Search filtering
-    const searchBox = document.getElementById('searchBox');
-    let searchTerm = '';
-
-    searchBox.addEventListener('input', () => {
-      searchTerm = searchBox.value.toLowerCase();
-      filterListings();
-    });
-
-    function filterListings() {
-      listings.forEach(listing => {
-        const category = listing.getAttribute('data-category');
-        const title = listing.querySelector('.listing-title').textContent.toLowerCase();
-        const description = listing.querySelector('.listing-description').textContent.toLowerCase();
-
-        // Check category filter
-        const categoryMatch = activeCategory === 'all' || category === activeCategory;
-        // Check search filter
-        const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
-
-        if (categoryMatch && searchMatch) {
-          listing.style.display = 'block';
-        } else {
-          listing.style.display = 'none';
-        }
-      });
-    }
   </script>
 </body>
 </html>
